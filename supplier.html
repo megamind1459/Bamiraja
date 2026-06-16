@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bamiraja Supplier Dashboard</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="supplier.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <div>
+        <a class="brand" href="welcome.html">
+          <span class="brand-mark">🍽️</span>
+          <span>Bamiraja</span>
+        </a>
+        <p class="muted">Supplier Portal</p>
+      </div>
+
+      <nav class="nav-links">
+        <a class="nav-link active" href="supplier.html">Dashboard</a>
+        <a class="nav-link" href="supplier-menu.html">Menu</a>
+        <a class="nav-link" href="supplier-orders.html">Orders</a>
+        <a class="nav-link" href="supplier-inventory.html">Inventory</a>
+        <a class="nav-link" href="supplier-payments.html">Payments</a>
+        <a class="nav-link" href="supplier-settings.html">Profile / Settings</a>
+      </nav>
+
+      <div class="card small-card">
+        <h3>Today</h3>
+        <p id="queue-note">12 orders waiting for kitchen prep.</p>
+        <button id="view-queue-btn" class="ghost-btn" type="button">View Queue</button>
+      </div>
+    </aside>
+
+    <main class="main-content">
+      <header id="dashboard" class="topbar">
+        <div>
+          <p class="eyebrow">Supplier control center</p>
+          <h1>Welcome, Mama Tayo</h1>
+          <p class="muted">Manage stock, respond to orders, and track sales in one friendly workspace.</p>
+        </div>
+        <div class="topbar-actions">
+          <button id="notif-badge" class="ghost-btn" type="button">🔔 <span id="notif-count">3</span> new alerts</button>
+          <button id="add-item-btn" class="primary-btn" type="button">+ Add stock / product</button>
+        </div>
+      </header>
+
+      <section class="stats-grid">
+        <article class="card stat-card"><p>Orders today</p><strong id="orders-today">48</strong><span class="up">▲ 12% vs yesterday</span></article>
+        <article class="card stat-card"><p>Products in stock</p><strong id="stock-count">86</strong><span class="up">▲ 4 new items</span></article>
+        <article class="card stat-card"><p>Today’s earnings</p><strong id="earnings-total">₦324,500</strong><span class="up">▲ 18% this week</span></article>
+        <article class="card stat-card"><p>Low stock alerts</p><strong id="low-stock-count">3</strong><span class="warn">Restock soon</span></article>
+      </section>
+
+      <section id="menu" class="content-grid two-up">
+        <article class="card large-card">
+          <div class="card-head"><div><p class="eyebrow">Menu</p><h2>Food list & available dishes</h2></div><span class="badge">Live menu</span></div>
+          <ul class="mini-list">
+            <li>Jollof Rice — ₦2,500 — 24 sold today</li>
+            <li>Fried Rice — ₦2,800 — 18 sold today</li>
+            <li>Chicken Pepper Soup — ₦3,000 — 15 sold today</li>
+            <li>Plantain Bowl — ₦1,800 — 10 sold today</li>
+          </ul>
+        </article>
+
+        <article class="card large-card">
+          <div class="card-head"><div><p class="eyebrow">Inventory</p><h2>Add stock or a new product</h2></div></div>
+          <form id="stock-form" class="stock-form">
+            <input id="product-name" type="text" placeholder="Product name" required />
+            <input id="product-category" type="text" placeholder="Category" required />
+            <input id="product-price" type="number" min="0" placeholder="Price (₦)" required />
+            <input id="product-stock" type="number" min="0" placeholder="Available stock" required />
+            <button class="primary-btn full" type="submit">Save product</button>
+          </form>
+          <p id="stock-success" class="helper-text">Tip: Add new dishes, drinks, or ingredients here.</p>
+        </article>
+      </section>
+
+      <section id="inventory" class="content-grid two-up">
+        <article class="card large-card">
+          <div class="card-head"><div><p class="eyebrow">Inventory</p><h2>All available goods</h2></div><span class="badge">Restock ready</span></div>
+          <ul class="mini-list">
+            <li>Rice bags — 3 left — low stock</li>
+            <li>Chicken — 8 packs left — enough</li>
+            <li>Fresh pepper — 2 kg left — low stock</li>
+            <li>Drinks — 24 crates — available</li>
+          </ul>
+        </article>
+
+        <article class="card large-card">
+          <div class="card-head"><div><p class="eyebrow">Orders</p><h2>Order alerts</h2></div></div>
+          <ul id="notification-list" class="mini-list">
+            <li>3 new customer orders are waiting for confirmation.</li>
+            <li>Chicken stock is running low — restock soon.</li>
+            <li>Order #BR-1014 is ready to dispatch.</li>
+          </ul>
+        </article>
+      </section>
+
+      <section id="orders" class="content-grid two-up">
+        <article class="card large-card">
+          <div class="card-head"><div><p class="eyebrow">Orders</p><h2>All orders received</h2></div><span class="badge">Accept or cancel here</span></div>
+          <div id="orders-board" class="orders-board"></div>
+        </article>
+
+        <article id="payments" class="card large-card">
+          <div class="card-head"><div><p class="eyebrow">Payments</p><h2>Supplier wallet & payouts</h2></div><span class="badge">Settlement ready</span></div>
+          <div class="wallet-card">
+            <p class="wallet-label">Available wallet balance</p>
+            <strong id="wallet-balance">₦54,000</strong>
+            <p class="wallet-note" id="wallet-status">Ready to receive your next delivery payout.</p>
+          </div>
+          <ul class="mini-list">
+            <li>Delivered payout credited: <strong id="wallet-payout">₦0</strong></li>
+            <li>Transaction history</li>
+            <li id="supplier-wallet-history" class="wallet-history-inline"></li>
+            <li>Today’s sales: ₦86,250</li>
+            <li>Delivery fee income: ₦12,400</li>
+            <li>Net earnings after costs: ₦74,850</li>
+          </ul>
+        </article>
+      </section>
+
+      <section id="settings" class="content-grid two-up settings-layout">
+        <article class="card large-card settings-card">
+          <div class="card-head"><div><p class="eyebrow">Profile</p><h2>Supplier profile</h2></div><span class="badge">Verified</span></div>
+          <div class="profile-box">
+            <div class="avatar-pill">MT</div>
+            <div>
+              <h3>Mama Tayo</h3>
+              <p>Kitchen owner • Lagos</p>
+              <small>Business email: mama.tayo@bamiraja.com</small>
+            </div>
+          </div>
+          <ul class="mini-list">
+            <li>Business hours: 7:00 AM – 8:00 PM</li>
+            <li>Pickup window: 10 minutes after order acceptance</li>
+            <li>Wallet payout method: Bank transfer</li>
+          </ul>
+        </article>
+
+        <article class="card large-card settings-card">
+          <div class="card-head"><div><p class="eyebrow">Settings</p><h2>Preferences</h2></div></div>
+          <ul class="mini-list">
+            <li>Auto-accept orders under ₦10,000</li>
+            <li>Low-stock alerts: On</li>
+            <li>Kitchen prep notifications: Enabled</li>
+            <li>Delivery notes: Sent to riders</li>
+          </ul>
+        </article>
+
+        <article class="card large-card settings-card full-width">
+          <div class="card-head"><div><p class="eyebrow">Sales</p><h2>Today’s sales insights</h2></div></div>
+          <ul class="mini-list insight-list">
+            <li><strong>Top seller:</strong> <span id="top-seller">Jollof Rice</span></li>
+            <li><strong>Least ordered:</strong> <span id="least-seller">Plantain Bowl</span></li>
+            <li><strong>Today’s sales:</strong> <span id="today-sales">₦86,250</span></li>
+            <li><strong>Most recent note:</strong> <span id="latest-note">New orders are coming in steadily.</span></li>
+          </ul>
+        </article>
+      </section>
+    </main>
+  </div>
+  <div id="toast" class="toast" aria-live="polite"></div>
+  <script src="supplier.js"></script>
+</body>
+</html>

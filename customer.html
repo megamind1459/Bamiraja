@@ -1,0 +1,476 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bamiraja - Delicious Food, Delivered Fast</title>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Sora:wght@600;700;800&family=Material+Icons+Outlined&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="customer.css">
+</head>
+<body>
+    <div id="app-shell">
+
+        <div id="page-home" class="page active">
+            <header class="app-header">
+                <div class="header-top">
+                    <div class="header-logo">
+                        <div class="logo-mark">
+                            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+                        </div>
+                        <div>
+                            <div class="logo-name">Bamiraja</div>
+                            <div class="location-bar">
+                                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+                                <span>Deliver to Ikeja, Lagos</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="header-actions">
+                        <button class="icon-btn" aria-label="Notifications">
+                            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M19 17H5v-6c0-3.07 1.63-5.64 4.5-6.32V4a1.5 1.5 0 0 1 3 0v.68C17.37 5.36 19 7.92 19 11v6zM12 22a2.5 2.5 0 0 0 2.47-2H9.53A2.5 2.5 0 0 0 12 22z"/></svg>
+                        </button>
+                    </div>
+                </div>
+            </header>
+
+            <div class="search-wrap">
+                <div class="search-box">
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C8.01 14 6 11.99 6 9.5S8.01 5 10.5 5 15 7.01 15 9.5 12.99 14 10.5 14z"/></svg>
+                    <input type="text" placeholder="Search for food, restaurants...">
+                </div>
+            </div>
+
+            <section class="hero-banner">
+                <div class="hero-banner-text">
+                    <span class="badge">Hot deals</span>
+                    <h3>Delicious food, delivered fast</h3>
+                    <p>Up to 20% off on your first order</p>
+                </div>
+                <div class="hero-spot">
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path fill="currentColor" d="M12 2l4 7h-8l4-7zm0 9.5c-2.48 0-4.5 2.02-4.5 4.5s2.02 4.5 4.5 4.5 4.5-2.02 4.5-4.5-2.02-4.5-4.5-4.5z"/></svg>
+                </div>
+            </section>
+
+            <section class="section">
+                <div class="section-head">
+                    <h4>Categories</h4>
+                    <a href="#">See all</a>
+                </div>
+                <div class="cat-scroll">
+                    <div class="cat-chip active" onclick="selectCategory('All')">
+                        <img src="images/jollof%20rice.jpg" alt="All">
+                        <span>All</span>
+                    </div>
+                    <div class="cat-chip" onclick="selectCategory('Rice')">
+                        <img src="images/grills.jpg" alt="Rice">
+                        <span>Rice</span>
+                    </div>
+                    <div class="cat-chip" onclick="selectCategory('Pizza')">
+                        <img src="images/Food%20palace.jpg" alt="Pizza">
+                        <span>Pizza</span>
+                    </div>
+                    <div class="cat-chip" onclick="selectCategory('Drinks')">
+                        <img src="images/healthy%20bowls.jpg" alt="Drinks">
+                        <span>Drinks</span>
+                    </div>
+                    <div class="cat-chip" onclick="selectCategory('Dessert')">
+                        <img src="images/desserts.jpg" alt="Dessert">
+                        <span>Dessert</span>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section">
+                <div class="section-head">
+                    <h4>Popular Restaurants</h4>
+                    <a href="#">See all</a>
+                </div>
+                <div class="restaurant-list">
+                    <div class="restaurant-list-empty" style="display:none; padding:12px 0; color:#64748b;">No restaurants match this category right now.</div>
+                    <article onclick="navigateTo('page-restaurant')" class="r-card" data-category="Rice">
+                        <div class="r-card-img">
+                            <img src="images/Food%20palace.jpg" alt="Food Palace">
+                            <div class="r-card-badge">20-30 min</div>
+                        </div>
+                        <div class="r-card-body">
+                            <h5>Food Palace</h5>
+                            <div class="r-card-meta">
+                                <div class="r-meta-item star">
+                                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 17.27L18.18 21 16.54 13.97 22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                                    4.6
+                                </div>
+                                <div class="r-meta-item">₦ Delivery</div>
+                            </div>
+                        </div>
+                    </article>
+                    <article onclick="navigateTo('page-restaurant')" class="r-card" data-category="Rice">
+                        <div class="r-card-img">
+                            <img src="images/mama%20kitchen.jpg" alt="Mama Cass">
+                            <div class="r-card-badge">25-35 min</div>
+                        </div>
+                        <div class="r-card-body">
+                            <h5>Mama Cass</h5>
+                            <div class="r-card-meta">
+                                <div class="r-meta-item star">
+                                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 17.27L18.18 21 16.54 13.97 22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                                    4.5
+                                </div>
+                                <div class="r-meta-item">₦ Delivery</div>
+                            </div>
+                        </div>
+                    </article>
+                    <article onclick="navigateTo('page-restaurant')" class="r-card" data-category="Pizza">
+                        <div class="r-card-img">
+                            <img src="images/resturant 1.jpg" alt="Tasty Treats">
+                            <div class="r-card-badge">18-25 min</div>
+                        </div>
+                        <div class="r-card-body">
+                            <h5>Tasty Treats</h5>
+                            <div class="r-card-meta">
+                                <div class="r-meta-item star">
+                                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 17.27L18.18 21 16.54 13.97 22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                                    4.7
+                                </div>
+                                <div class="r-meta-item">₦ Delivery</div>
+                            </div>
+                        </div>
+                    </article>
+                    <article onclick="navigateTo('page-restaurant')" class="r-card" data-category="Dessert">
+                        <div class="r-card-img">
+                            <img src="images/resturant 2.jpg" alt="Urban Eats">
+                            <div class="r-card-badge">22-30 min</div>
+                        </div>
+                        <div class="r-card-body">
+                            <h5>Urban Eats</h5>
+                            <div class="r-card-meta">
+                                <div class="r-meta-item star">
+                                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 17.27L18.18 21 16.54 13.97 22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                                    4.8
+                                </div>
+                                <div class="r-meta-item">₦ Delivery</div>
+                            </div>
+                        </div>
+                    </article>
+                    <article onclick="navigateTo('page-restaurant')" class="r-card" data-category="Drinks">
+                        <div class="r-card-img">
+                            <img src="images/healthy%20bowls.jpg" alt="Fresh Sip">
+                            <div class="r-card-badge">10-15 min</div>
+                        </div>
+                        <div class="r-card-body">
+                            <h5>Fresh Sip</h5>
+                            <div class="r-card-meta">
+                                <div class="r-meta-item star">
+                                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 17.27L18.18 21 16.54 13.97 22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                                    4.7
+                                </div>
+                                <div class="r-meta-item">₦ Delivery</div>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </section>
+        </div>
+
+        <div id="page-restaurant" class="page">
+            <header class="app-header">
+                <div class="header-top">
+                    <button onclick="navigateTo('page-home')" class="icon-btn" aria-label="Back">
+                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/></svg>
+                    </button>
+                    <div class="header-logo">
+                        <div class="logo-name">Restaurant</div>
+                    </div>
+                    <button class="icon-btn" aria-label="Share">
+                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.03-.47-.09-.7l7.05-4.11A2.99 2.99 0 0 0 18 7.92c1.66 0 3 1.34 3 3s-1.34 3-3 3zM6.5 6C5.67 6 5 6.67 5 7.5S5.67 9 6.5 9s1.5-.67 1.5-1.5S7.33 6 6.5 6zm11 12c-.83 0-1.5.67-1.5 1.5S16.67 21 17.5 21 19 20.33 19 19.5 18.33 18 17.5 18zM6.5 15C5.67 15 5 15.67 5 16.5S5.67 18 6.5 18 8 17.33 8 16.5 7.33 15 6.5 15z"/></svg>
+                    </button>
+                </div>
+            </header>
+
+            <section class="rest-hero">
+                <img src="images/Food%20palace.jpg" alt="Food Palace">
+                <div class="rest-hero-overlay">
+                    <h2>Food Palace</h2>
+                    <p>20-30 min • Delivery available</p>
+                </div>
+            </section>
+
+            <div class="menu-section">
+                <div class="section-head">
+                    <h4>Menu</h4>
+                    <a href="#">See all</a>
+                </div>
+                <div class="menu-item">
+                    <img src="images/jollof%20rice.jpg" alt="Jollof Rice" class="menu-item-img">
+                    <div class="menu-item-info">
+                        <h5>Jollof Rice & Chicken</h5>
+                        <p>Classic spicy rice with tender chicken.</p>
+                        <div class="menu-item-footer">
+                            <span class="menu-price">₦2,500</span>
+                            <div class="qty-controls">
+                                <button onclick="changeMenuQty('jollof-rice-chicken', 'Jollof Rice & Chicken', 2500, -1)" class="qty-btn">-</button>
+                                <span id="qty-jollof-rice-chicken" class="qty-display">0</span>
+                                <button onclick="changeMenuQty('jollof-rice-chicken', 'Jollof Rice & Chicken', 2500, 1)" class="qty-btn">+</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="menu-item">
+                    <img src="images/Grilled%20chicken.jpg" alt="Fried Rice" class="menu-item-img">
+                    <div class="menu-item-info">
+                        <h5>Fried Rice & Beef</h5>
+                        <p>Savory rice with beef and mixed vegetables.</p>
+                        <div class="menu-item-footer">
+                            <span class="menu-price">₦2,800</span>
+                            <div class="qty-controls">
+                                <button onclick="changeMenuQty('fried-rice-beef', 'Fried Rice & Beef', 2800, -1)" class="qty-btn">-</button>
+                                <span id="qty-fried-rice-beef" class="qty-display">0</span>
+                                <button onclick="changeMenuQty('fried-rice-beef', 'Fried Rice & Beef', 2800, 1)" class="qty-btn">+</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="menu-item">
+                    <img src="images/healthy%20bowls.jpg" alt="Ofada Rice" class="menu-item-img">
+                    <div class="menu-item-info">
+                        <h5>Ofada Rice & Sauce</h5>
+                        <p>Rich local rice served with spicy sauce.</p>
+                        <div class="menu-item-footer">
+                            <span class="menu-price">₦2,200</span>
+                            <div class="qty-controls">
+                                <button onclick="changeMenuQty('ofada-rice-sauce', 'Ofada Rice & Sauce', 2200, -1)" class="qty-btn">-</button>
+                                <span id="qty-ofada-rice-sauce" class="qty-display">0</span>
+                                <button onclick="changeMenuQty('ofada-rice-sauce', 'Ofada Rice & Sauce', 2200, 1)" class="qty-btn">+</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="basket-bar" class="basket-bar" style="display:none;" onclick="navigateTo('page-cart')">
+                <div class="basket-bar-left">
+                    <div class="basket-count-badge" id="basket-count">0</div>
+                    <span>View Cart</span>
+                </div>
+                <strong id="basket-total">₦0</strong>
+            </div>
+        </div>
+
+        <div id="page-cart" class="page">
+            <header class="checkout-header">
+                <button onclick="navigateTo('page-restaurant')" class="icon-btn" aria-label="Back">
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/></svg>
+                </button>
+                <h3>My Cart</h3>
+            </header>
+
+            <section class="section">
+                <div class="section-head">
+                    <h4>Items in cart</h4>
+                    <span id="cart-count" class="pill">0 items</span>
+                </div>
+                <div class="cart-list" id="cart-list">
+                    <div class="cart-empty">
+                        <p>Your cart is empty.</p>
+                        <small>Add items from the menu to begin.</small>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section">
+                <div class="order-summary">
+                    <div class="summary-row">
+                        <span>Subtotal</span>
+                        <span id="cart-subtotal">₦0</span>
+                    </div>
+                    <div class="summary-row">
+                        <span>Delivery Fee</span>
+                        <span>₦500</span>
+                    </div>
+                    <div class="summary-row total">
+                        <span>Total</span>
+                        <span id="cart-total">₦500</span>
+                    </div>
+                </div>
+            </section>
+
+            <button onclick="navigateTo('page-checkout')" class="basket-bar center-button">
+                Checkout Now
+            </button>
+        </div>
+
+        <div id="page-checkout" class="page">
+            <header class="checkout-header">
+                <button onclick="navigateTo('page-cart')" class="icon-btn" aria-label="Back">
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/></svg>
+                </button>
+                <h3>Checkout</h3>
+            </header>
+
+            <section class="checkout-section">
+                <div class="section-head">
+                    <h4>Delivery Address</h4>
+                    <a href="#">Change</a>
+                </div>
+                <div class="delivery-card">
+                    <div class="delivery-card-icon">
+                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+                    </div>
+                    <div class="delivery-card-text">
+                        <h5>Home Address</h5>
+                        <p>23, Allen Avenue, Ikeja,<br>Lagos State.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="checkout-section">
+                <div class="section-head">
+                    <h4>Payment Method</h4>
+                </div>
+                <div class="payment-panel">
+                    <article class="wallet-card customer-wallet-card">
+                        <div class="wallet-card-head">
+                            <div>
+                                <p class="wallet-label">Bamiraja Wallet</p>
+                                <strong id="customer-wallet-balance">₦12,450</strong>
+                            </div>
+                            <button id="wallet-visibility-btn" class="wallet-toggle-btn" type="button" onclick="toggleWalletVisibility()">Hide balance</button>
+                        </div>
+                        <p id="customer-wallet-status" class="wallet-note">Visible balance · tap to hide</p>
+                        <span id="customer-wallet-badge" class="wallet-badge">Visible</span>
+                        <ul id="customer-transaction-list" class="wallet-history-list"></ul>
+                    </article>
+                    <label class="payment-option featured">
+                        <div>
+                            <span class="material-icons-outlines">account_balance_wallet</span>
+                            <div>
+                                <span>Bamiraja Wallet</span>
+                                <small id="wallet-payment-balance">₦12,450</small>
+                            </div>
+                        </div>
+                        <input type="radio" name="payment" checked>
+                    </label>
+                    <label class="payment-option">
+                        <div>
+                            <span class="material-icons-outlines">credit_card</span>
+                            <span>Debit / Credit Card</span>
+                        </div>
+                        <input type="radio" name="payment">
+                    </label>
+                    <label class="payment-option">
+                        <div>
+                            <span class="material-icons-outlines">payments</span>
+                            <span>Cash on Delivery</span>
+                        </div>
+                        <input type="radio" name="payment">
+                    </label>
+                </div>
+            </section>
+
+            <section class="checkout-section">
+                <div class="section-head">
+                    <h4>Order Summary</h4>
+                </div>
+                <div class="order-summary">
+                    <div class="summary-row">
+                        <span>Subtotal</span>
+                        <span id="summary-subtotal">₦0</span>
+                    </div>
+                    <div class="summary-row">
+                        <span>Delivery Fee</span>
+                        <span>₦500</span>
+                    </div>
+                    <div class="summary-row total">
+                        <span>Total</span>
+                        <span id="summary-total">₦500</span>
+                    </div>
+                </div>
+            </section>
+
+            <button onclick="navigateTo('page-track')" class="basket-bar center-button">
+                Track Order
+            </button>
+        </div>
+
+        <div id="page-track" class="page">
+            <header class="app-header">
+                <div class="header-top">
+                    <button onclick="navigateTo('page-home')" class="icon-btn" aria-label="Close">
+                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+                    </button>
+                    <div class="header-logo">
+                        <div class="logo-name">Track Order</div>
+                    </div>
+                    <div class="header-actions"></div>
+                </div>
+            </header>
+
+            <section class="section">
+                <div class="bg-gray-50 delivery-card">
+                    <div class="order-card-row">
+                        <div>
+                            <small>Order ID</small>
+                            <h5>#BR12345678</h5>
+                        </div>
+                        <span class="pill">Dispatched</span>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section">
+                <div class="track-map">
+                    <div class="track-map-overlay">
+                        <div class="pulse-rider">
+                            <span class="material-icons-outlines">moped</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section">
+                <div class="track-steps">
+                    <div class="track-step done">
+                        <div class="step-dot">
+                            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+                        </div>
+                        <div class="step-text">
+                            <h5>Order Placed</h5>
+                            <p>We have received your order</p>
+                        </div>
+                    </div>
+                    <div class="track-step done">
+                        <div class="step-dot">
+                            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+                        </div>
+                        <div class="step-text">
+                            <h5>Confirmed</h5>
+                            <p>Restaurant is preparing food</p>
+                        </div>
+                    </div>
+                    <div class="track-step active">
+                        <div class="step-dot">
+                            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+                        </div>
+                        <div class="step-text">
+                            <h5>Dispatched</h5>
+                            <p>Rider heading to your location</p>
+                        </div>
+                    </div>
+                    <div class="track-step">
+                        <div class="step-dot"></div>
+                        <div class="step-text">
+                            <h5>Delivered</h5>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <button class="basket-bar center-button">
+                Need Help?
+            </button>
+        </div>
+
+    </div>
+
+    <script src="customer.js"></script>
+</body>
+</html>

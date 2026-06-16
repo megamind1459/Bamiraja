@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bamiraja Supplier Settings</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="supplier.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <div>
+        <a class="brand" href="welcome.html"><span class="brand-mark">🍽️</span><span>Bamiraja</span></a>
+        <p class="muted">Supplier Portal</p>
+      </div>
+      <nav class="nav-links">
+        <a class="nav-link" href="supplier.html">Dashboard</a>
+        <a class="nav-link" href="supplier-menu.html">Menu</a>
+        <a class="nav-link" href="supplier-orders.html">Orders</a>
+        <a class="nav-link" href="supplier-inventory.html">Inventory</a>
+        <a class="nav-link" href="supplier-payments.html">Payments</a>
+        <a class="nav-link active" href="supplier-settings.html">Profile / Settings</a>
+      </nav>
+    </aside>
+    <main class="main-content">
+      <header class="topbar">
+        <div>
+          <p class="eyebrow">Profile & Settings</p>
+          <h1>Manage your supplier profile</h1>
+          <p class="muted">A cleaner settings page for business details, payout, and notifications.</p>
+        </div>
+      </header>
+      <section class="content-grid two-up settings-layout">
+        <article class="card large-card settings-card">
+          <div class="card-head"><div><p class="eyebrow">Profile</p><h2>Supplier profile</h2></div><span class="badge">Verified</span></div>
+          <div class="profile-box">
+            <div class="avatar-pill">MT</div>
+            <div>
+              <h3>Mama Tayo</h3>
+              <p>Kitchen owner • Lagos</p>
+              <small>Business email: mama.tayo@bamiraja.com</small>
+            </div>
+          </div>
+          <ul class="mini-list">
+            <li>Business hours: 7:00 AM – 8:00 PM</li>
+            <li>Pickup window: 10 minutes after order acceptance</li>
+            <li>Wallet payout method: Bank transfer</li>
+          </ul>
+        </article>
+        <article class="card large-card settings-card">
+          <div class="card-head"><div><p class="eyebrow">Preferences</p><h2>Notification settings</h2></div></div>
+          <ul class="mini-list">
+            <li>Low-stock alerts: On</li>
+            <li>Kitchen prep notifications: Enabled</li>
+            <li>Delivery payout alerts: On</li>
+            <li>Order acceptance reminder: On</li>
+          </ul>
+        </article>
+      </section>
+    </main>
+  </div>
+  <div id="toast" class="toast" aria-live="polite"></div>
+  <script src="supplier.js"></script>
+</body>
+</html>

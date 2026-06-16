@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bamiraja Supplier Payments</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="supplier.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <div>
+        <a class="brand" href="welcome.html"><span class="brand-mark">🍽️</span><span>Bamiraja</span></a>
+        <p class="muted">Supplier Portal</p>
+      </div>
+      <nav class="nav-links">
+        <a class="nav-link" href="supplier.html">Dashboard</a>
+        <a class="nav-link" href="supplier-menu.html">Menu</a>
+        <a class="nav-link" href="supplier-orders.html">Orders</a>
+        <a class="nav-link" href="supplier-inventory.html">Inventory</a>
+        <a class="nav-link active" href="supplier-payments.html">Payments</a>
+        <a class="nav-link" href="supplier-settings.html">Profile / Settings</a>
+      </nav>
+    </aside>
+    <main class="main-content">
+      <header class="topbar">
+        <div>
+          <p class="eyebrow">Payments</p>
+          <h1>Wallet & settlement</h1>
+          <p class="muted">Delivered orders credit your supplier wallet instantly.</p>
+        </div>
+      </header>
+      <section class="content-grid two-up">
+        <article class="card large-card">
+          <div class="card-head"><div><p class="eyebrow">Wallet</p><h2>Current balance</h2></div><span class="badge">Live</span></div>
+          <div class="wallet-card">
+            <p class="wallet-label">Available wallet balance</p>
+            <strong id="wallet-balance">₦54,000</strong>
+            <p class="wallet-note" id="wallet-status">Delivered orders release funds immediately here.</p>
+          </div>
+          <ul class="mini-list">
+            <li>Delivered payout credited: <strong id="wallet-payout">₦0</strong></li>
+            <li>Today’s sales: ₦86,250</li>
+            <li>Delivery fee income: ₦12,400</li>
+          </ul>
+        </article>
+        <article class="card large-card">
+          <div class="card-head"><div><p class="eyebrow">Income</p><h2>Settlement summary</h2></div></div>
+          <ul class="mini-list">
+            <li>Net earnings after costs: ₦74,850</li>
+            <li>Payout due: ₦18,500</li>
+            <li>Delivery credits: 2 orders delivered</li>
+          </ul>
+        </article>
+      </section>
+    </main>
+  </div>
+  <div id="toast" class="toast" aria-live="polite"></div>
+  <script src="supplier.js"></script>
+</body>
+</html>

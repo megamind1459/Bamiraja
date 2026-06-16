@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bamiraja Supplier Orders</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="supplier.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <div>
+        <a class="brand" href="welcome.html"><span class="brand-mark">🍽️</span><span>Bamiraja</span></a>
+        <p class="muted">Supplier Portal</p>
+      </div>
+      <nav class="nav-links">
+        <a class="nav-link" href="supplier.html">Dashboard</a>
+        <a class="nav-link" href="supplier-menu.html">Menu</a>
+        <a class="nav-link active" href="supplier-orders.html">Orders</a>
+        <a class="nav-link" href="supplier-inventory.html">Inventory</a>
+        <a class="nav-link" href="supplier-payments.html">Payments</a>
+        <a class="nav-link" href="supplier-settings.html">Profile / Settings</a>
+      </nav>
+      <div class="card small-card">
+        <h3>Queue</h3>
+        <p id="queue-note">12 orders waiting for kitchen prep.</p>
+        <a class="ghost-btn" href="supplier-orders.html#queue">View queue</a>
+      </div>
+    </aside>
+    <main class="main-content">
+      <header class="topbar">
+        <div>
+          <p class="eyebrow">Orders</p>
+          <h1>Incoming orders & queue</h1>
+          <p class="muted">Accept, decline, or mark delivered here with live notifications.</p>
+        </div>
+      </header>
+      <section id="queue" class="content-grid two-up">
+        <article class="card large-card">
+          <div class="card-head"><div><p class="eyebrow">Queue</p><h2>Orders waiting for your action</h2></div><span class="badge">Live queue</span></div>
+          <div id="orders-board" class="orders-board"></div>
+        </article>
+        <article class="card large-card">
+          <div class="card-head"><div><p class="eyebrow">Notifications</p><h2>Alerts</h2></div></div>
+          <ul id="notification-list" class="mini-list"></ul>
+        </article>
+      </section>
+    </main>
+  </div>
+  <div id="toast" class="toast" aria-live="polite"></div>
+  <script src="supplier.js"></script>
+</body>
+</html>

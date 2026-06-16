@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bamiraja Admin</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Sora:wght@700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
+  <link rel="stylesheet" href="admin.css" />
+</head>
+<body>
+
+<!-- SIDEBAR -->
+<aside id="sidebar">
+  <div class="sidebar-logo" onclick="toggleSidebar()">
+    <div class="logo-icon"><span class="material-icons-outlined">storefront</span></div>
+    <span class="logo-text">Bamiraja</span>
+  </div>
+
+  <nav class="nav-section">
+    <div class="nav-label">MAIN</div>
+    <a class="nav-item active" onclick="showPage('dashboard')">
+      <span class="material-icons-outlined">dashboard</span>
+      <span class="label">Dashboard</span>
+    </a>
+    <a class="nav-item" onclick="showPage('orders')">
+      <span class="material-icons-outlined">shopping_bag</span>
+      <span class="label">Orders</span>
+      <span class="nav-badge">13</span>
+    </a>
+
+    <div class="nav-label" style="margin-top:8px;">PEOPLE</div>
+    <a class="nav-item" onclick="toggleSub('sub-users', this)">
+      <span class="material-icons-outlined">group</span>
+      <span class="label">Users</span>
+      <span class="material-icons-outlined" style="margin-left:auto;font-size:16px;" id="users-chevron">expand_more</span>
+    </a>
+    <div class="sidebar-sub" id="sub-users">
+      <a href="customer.html">Customers</a>
+      <a href="#">Merchants</a>
+      <a href="rider.html">Riders</a>
+    </div>
+    <a class="nav-item" onclick="showPage('riders-page')">
+      <span class="material-icons-outlined">directions_bike</span>
+      <span class="label">Riders</span>
+    </a>
+
+    <div class="nav-label" style="margin-top:8px;">FINANCE</div>
+    <a class="nav-item" onclick="showPage('financials')">
+      <span class="material-icons-outlined">analytics</span>
+      <span class="label">Financials</span>
+    </a>
+    <a class="nav-item" onclick="showPage('transactions')">
+      <span class="material-icons-outlined">receipt_long</span>
+      <span class="label">Transactions</span>
+    </a>
+    <a class="nav-item" onclick="showPage('wallets')">
+      <span class="material-icons-outlined">account_balance_wallet</span>
+      <span class="label">Wallets</span>
+    </a>
+
+    <div class="nav-label" style="margin-top:8px;">MORE</div>
+    <a class="nav-item" onclick="showPage('reports')">
+      <span class="material-icons-outlined">bar_chart</span>
+      <span class="label">Reports</span>
+    </a>
+    <a class="nav-item" onclick="showPage('settings')">
+      <span class="material-icons-outlined">settings</span>
+      <span class="label">Settings</span>
+    </a>
+  </nav>
+
+  <div class="sidebar-footer">
+    <a class="nav-item" style="color:#f87171;" href="#">
+      <span class="material-icons-outlined" style="color:#f87171;">logout</span>
+      <span class="label">Logout</span>
+    </a>
+  </div>
+</aside>
+
+<!-- MAIN -->
+<div id="main">
+  <!-- TOPBAR -->
+  <div class="topbar">
+    <div class="topbar-left">
+      <button class="sidebar-toggle" onclick="toggleSidebar()">
+        <span class="material-icons-outlined" style="font-size:20px;">menu</span>
+      </button>
+      <div class="search-wrap">
+        <span class="material-icons-outlined">search</span>
+        <input type="text" placeholder="Search orders, riders, customers…">
+      </div>
+    </div>
+    <div class="topbar-right">
+      <button class="icon-btn" onclick="toggleNotif()">
+        <span class="material-icons-outlined" style="font-size:20px;">notifications</span>
+        <span class="notif-dot"></span>
+      </button>
+      <div class="avatar-wrap">
+        <div class="av-placeholder">SA</div>
+        <div class="avatar-info">
+          <p>Super Admin</p>
+          <span>Bamiraja HQ</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- NOTIFICATION PANEL -->
+  <div class="notif-panel" id="notif-panel">
+    <div class="notif-header">
+      <h5>Notifications</h5>
+      <span style="font-size:11px;color:var(--green);cursor:pointer;font-weight:700;">Mark all read</span>
+    </div>
+    <div class="notif-list">
+      <div class="notif-item unread"><div class="notif-dot-sm"></div><div><p>New order #BR98765 placed by Tunde Bello</p><span>2 mins ago</span></div></div>
+      <div class="notif-item unread"><div class="notif-dot-sm"></div><div><p>Rider Emeka Okafor completed 10 deliveries today</p><span>18 mins ago</span></div></div>
+      <div class="notif-item"><div style="width:8px;flex-shrink:0;"></div><div><p>₦320,000 refund processed for Order #BR87654</p><span>1 hr ago</span></div></div>
+      <div class="notif-item"><div style="width:8px;flex-shrink:0;"></div><div><p>Merchant "Food Palace" updated menu items</p><span>3 hrs ago</span></div></div>
+    </div>
+  </div>
+
+  <!-- CONTENT -->
+  <div id="content">
+
+    <!-- ===== DASHBOARD ===== -->
+    <div class="page-section active" id="page-dashboard">
+      <div class="page-header">
+        <div>
+          <div class="breadcrumb" style="margin-bottom:6px;"><a href="#">Home</a><span class="sep">›</span><span class="cur">Dashboard</span></div>
+          <h2>Overview</h2>
+          <p>Wednesday, 10 June 2026 — Operations are running smoothly</p>
+        </div>
+        <div class="header-actions">
+          <button class="btn btn-ghost"><span class="material-icons-outlined" style="font-size:16px;">file_download</span> Export</button>
+          <button class="btn btn-primary"><span class="material-icons-outlined" style="font-size:16px;">add</span> New Order</button>
+        </div>
+      </div>
+
+      <!-- KPI Stats -->
+      <div class="stats-row">
+        <div class="stat-card">
+          <div class="stat-card-head">
+            <div class="stat-icon green"><span class="material-icons-outlined">shopping_bag</span></div>
+            <span class="stat-trend up">↑ 12%</span>
+          </div>
+          <h3>1,248</h3>
+          <p>Total Orders Today</p>
+        </div>
+        <div class="stat-card">
+          <div class="stat-card-head">
+            <div class="stat-icon blue"><span class="material-icons-outlined">paid</span></div>
+            <span class="stat-trend up">↑ 8.4%</span>
+          </div>
+          <h3>₦7.65M</h3>
+          <p>Revenue This Month</p>
+        </div>
+        <div class="stat-card">
+          <div class="stat-card-head">
+            <div class="stat-icon amber"><span class="material-icons-outlined">directions_bike</span></div>
+            <span class="stat-trend up">↑ 3</span>
+          </div>
+          <h3>48</h3>
+          <p>Active Riders</p>
+        </div>
+        <div class="stat-card">
+          <div class="stat-card-head">
+            <div class="stat-icon rose"><span class="material-icons-outlined">cancel</span></div>
+            <span class="stat-trend down">↑ 2%</span>
+          </div>
+          <h3>3.1%</h3>
+          <p>Cancellation Rate</p>
+        </div>
+      </div>
+
+      <!-- Charts row -->
+      <div class="grid-3">
+        <div class="card">
+          <div class="card-header">
+            <h4>Orders Summary</h4>
+            <div class="tabs">
+              <button class="tab active">Week</button>
+              <button class="tab">Month</button>
+            </div>
+          </div>
+          <div class="card-body no-pt">
+            <div style="display:flex;gap:16px;margin-bottom:12px;">
+              <span style="display:flex;align-items:center;gap:6px;font-size:12px;color:var(--muted);"><span style="width:12px;height:3px;border-radius:2px;background:#10b981;display:inline-block;"></span>This Week</span>
+              <span style="display:flex;align-items:center;gap:6px;font-size:12px;color:var(--muted);"><span style="width:12px;height:3px;border-radius:2px;background:#93c5fd;display:inline-block;border-top:2px dashed #93c5fd;height:0;"></span>Last Week</span>
+            </div>
+            <div class="chart-wrap"><canvas id="ordersSummaryChart"></canvas></div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header"><h4>Order Status</h4></div>
+          <div class="card-body no-pt" style="display:flex;align-items:center;gap:20px;">
+            <div style="width:140px;height:140px;flex-shrink:0;position:relative;">
+              <canvas id="orderStatusChart"></canvas>
+              <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;">
+                <span style="font-family:'Sora',sans-serif;font-weight:800;font-size:20px;">96</span>
+                <span style="font-size:10px;color:var(--muted);font-weight:600;">ORDERS</span>
+              </div>
+            </div>
+            <div class="donut-legend" style="flex:1;">
+              <div class="legend-row"><div class="legend-dot" style="background:#f59e0b;"></div><span>Pending</span><span class="lv">13</span></div>
+              <div class="legend-row"><div class="legend-dot" style="background:#10b981;"></div><span>Dispatched</span><span class="lv">51</span></div>
+              <div class="legend-row"><div class="legend-dot" style="background:#3b82f6;"></div><span>Delivered</span><span class="lv">32</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Financial + Merchants + Riders -->
+      <div class="grid-3">
+        <div class="card">
+          <div class="card-header">
+            <h4>Financial Overview</h4>
+            <div style="display:flex;gap:12px;font-size:12px;color:var(--muted);">
+              <span><span style="display:inline-block;width:10px;height:10px;border-radius:2px;background:#10b981;margin-right:4px;"></span>Revenue</span>
+              <span><span style="display:inline-block;width:10px;height:10px;border-radius:2px;background:#f97316;margin-right:4px;"></span>Expenses</span>
+            </div>
+          </div>
+          <div class="card-body no-pt">
+            <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;padding-bottom:14px;border-bottom:1px solid var(--border);margin-bottom:12px;">
+              <div><p style="font-size:11px;color:var(--muted);">Revenue</p><p style="font-weight:800;font-size:15px;margin-top:2px;">₦7.65M</p></div>
+              <div><p style="font-size:11px;color:var(--muted);">Expenses</p><p style="font-weight:800;font-size:15px;margin-top:2px;">₦1.18M</p></div>
+              <div><p style="font-size:11px;color:var(--muted);">Net Profit</p><p style="font-weight:800;font-size:15px;margin-top:2px;color:var(--green-d);">₦5.67M</p></div>
+            </div>
+            <div class="chart-wrap"><canvas id="financialsBarChart"></canvas></div>
+          </div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:16px;">
+          <div class="card">
+            <div class="card-header"><h4>Top Merchants</h4><a href="#" style="font-size:12px;color:var(--green);font-weight:700;text-decoration:none;">View all</a></div>
+            <div class="card-body no-pt">
+              <div class="mini-list">
+                <div class="mini-item"><div class="mini-avatar" style="background:#fff7ed;color:#c2410c;">FP</div><div class="mini-info"><p>Food Palace</p><span>142 orders this month</span></div><div class="mini-val">₦1.25M</div></div>
+                <div class="mini-item"><div class="mini-avatar" style="background:#fdf2f8;color:#9d174d;">MC</div><div class="mini-info"><p>Mama Cass</p><span>118 orders this month</span></div><div class="mini-val">₦980k</div></div>
+                <div class="mini-item"><div class="mini-avatar" style="background:#fffbeb;color:#92400e;">CH</div><div class="mini-info"><p>Chicken Hub</p><span>89 orders this month</span></div><div class="mini-val">₦760k</div></div>
+              </div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header"><h4>Top Riders</h4><a href="#" style="font-size:12px;color:var(--green);font-weight:700;text-decoration:none;">View all</a></div>
+            <div class="card-body no-pt">
+              <div class="mini-list">
+                <div class="mini-item"><div class="mini-avatar" style="background:#f0fdf4;color:#15803d;">EO</div><div class="mini-info"><p>Emeka Okafor</p><span>⭐ 4.9 · Online</span></div><div class="mini-val">128 trips</div></div>
+                <div class="mini-item"><div class="mini-avatar" style="background:#eff6ff;color:#1d4ed8;">KA</div><div class="mini-info"><p>Kunle Adeyemi</p><span>⭐ 4.8 · Online</span></div><div class="mini-val">105 trips</div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- KPI strip -->
+      <div class="kpi-strip">
+        <div class="kpi-card"><p>Transactions</p><h4>12,560</h4></div>
+        <div class="kpi-card"><p>Wallet Top-ups</p><h4 class="green">₦3.25M</h4></div>
+        <div class="kpi-card"><p>Rider Payouts</p><h4>₦2.78M</h4></div>
+        <div class="kpi-card"><p>Refunds</p><h4 class="rose">₦320k</h4></div>
+      </div>
+
+      <!-- Recent Activity -->
+      <div class="card">
+        <div class="card-header"><h4>Recent Activity</h4><span style="font-size:12px;color:var(--muted);">Last 30 minutes</span></div>
+        <div class="card-body no-pt">
+          <div class="activity-feed">
+            <div class="activity-item"><div class="act-icon green" style="background:var(--green-soft);"><span class="material-icons-outlined" style="color:var(--green);">check_circle</span></div><div class="act-text"><p>Order <strong>#BR12345</strong> delivered to John Doe by Emeka Okafor</p><span>2 minutes ago</span></div><div class="act-time"><span class="pill delivered">Delivered</span></div></div>
+            <div class="activity-item"><div class="act-icon amber" style="background:rgba(245,158,11,0.1);"><span class="material-icons-outlined" style="color:var(--amber);">shopping_bag</span></div><div class="act-text"><p>New order <strong>#BR12346</strong> placed by Amara Johnson — Food Palace</p><span>5 minutes ago</span></div><div class="act-time"><span class="pill pending">Pending</span></div></div>
+            <div class="activity-item"><div class="act-icon blue" style="background:rgba(59,130,246,0.1);"><span class="material-icons-outlined" style="color:var(--blue);">directions_bike</span></div><div class="act-text"><p>Rider <strong>Kunle Adeyemi</strong> picked up order from Mama Cass</p><span>11 minutes ago</span></div><div class="act-time"><span class="pill dispatched">Dispatched</span></div></div>
+            <div class="activity-item"><div class="act-icon rose" style="background:rgba(244,63,94,0.1);"><span class="material-icons-outlined" style="color:var(--rose);">money_off</span></div><div class="act-text"><p>Refund of <strong>₦3,200</strong> approved for Order #BR12280</p><span>28 minutes ago</span></div><div class="act-time"></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== ORDERS ===== -->
+    <div class="page-section" id="page-orders">
+      <div class="page-header">
+        <div>
+          <div class="breadcrumb" style="margin-bottom:6px;"><a href="#" onclick="showPage('dashboard')">Dashboard</a><span class="sep">›</span><span class="cur">Orders</span></div>
+          <h2>Orders</h2>
+          <p>1,248 orders today — 13 pending action</p>
+        </div>
+        <div class="header-actions">
+          <button class="btn btn-ghost"><span class="material-icons-outlined" style="font-size:16px;">file_download</span> Export CSV</button>
+          <button class="btn btn-primary"><span class="material-icons-outlined" style="font-size:16px;">add</span> Create Order</button>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-body">
+          <div class="filter-bar" style="margin-bottom:16px;">
+            <div class="filter-chip active">All (1,248)</div>
+            <div class="filter-chip">Pending (13)</div>
+            <div class="filter-chip">Dispatched (51)</div>
+            <div class="filter-chip">Delivered (1,169)</div>
+            <div class="filter-chip">Cancelled (15)</div>
+          </div>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Order ID</th><th>Customer</th><th>Merchant</th><th>Rider</th><th>Amount</th><th>Status</th><th>Time</th><th>Action</th></tr></thead>
+              <tbody>
+                <tr><td><strong>#BR12346</strong></td><td>Amara Johnson</td><td>Food Palace</td><td>Unassigned</td><td>₦4,500</td><td><span class="pill pending">Pending</span></td><td>5 mins ago</td><td><button class="btn btn-primary" style="padding:5px 12px;font-size:12px;">Assign</button></td></tr>
+                <tr><td><strong>#BR12345</strong></td><td>John Doe</td><td>Food Palace</td><td>Emeka Okafor</td><td>₦2,800</td><td><span class="pill delivered">Delivered</span></td><td>10 mins ago</td><td><button class="btn btn-ghost" style="padding:5px 12px;font-size:12px;">View</button></td></tr>
+                <tr><td><strong>#BR12344</strong></td><td>Grace Nwosu</td><td>Mama Cass</td><td>Kunle Adeyemi</td><td>₦3,200</td><td><span class="pill dispatched">Dispatched</span></td><td>18 mins ago</td><td><button class="btn btn-ghost" style="padding:5px 12px;font-size:12px;">Track</button></td></tr>
+                <tr><td><strong>#BR12343</strong></td><td>Bola Ade</td><td>Chicken Hub</td><td>Unassigned</td><td>₦1,900</td><td><span class="pill pending">Pending</span></td><td>24 mins ago</td><td><button class="btn btn-primary" style="padding:5px 12px;font-size:12px;">Assign</button></td></tr>
+                <tr><td><strong>#BR12342</strong></td><td>Seun Falana</td><td>Food Palace</td><td>Emeka Okafor</td><td>₦5,600</td><td><span class="pill delivered">Delivered</span></td><td>35 mins ago</td><td><button class="btn btn-ghost" style="padding:5px 12px;font-size:12px;">View</button></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== RIDERS ===== -->
+    <div class="page-section" id="page-riders-page">
+      <div class="page-header">
+        <div>
+          <div class="breadcrumb" style="margin-bottom:6px;"><a href="#" onclick="showPage('dashboard')">Dashboard</a><span class="sep">›</span><span class="cur">Riders</span></div>
+          <h2>Riders</h2>
+          <p>48 active right now · 62 total registered</p>
+        </div>
+        <button class="btn btn-primary"><span class="material-icons-outlined" style="font-size:16px;">person_add</span> Add Rider</button>
+      </div>
+      <div class="stats-row" style="grid-template-columns:repeat(3,1fr);">
+        <div class="stat-card"><div class="stat-card-head"><div class="stat-icon green"><span class="material-icons-outlined">directions_bike</span></div><span class="stat-trend up">Online</span></div><h3>48</h3><p>Active Riders</p></div>
+        <div class="stat-card"><div class="stat-card-head"><div class="stat-icon amber"><span class="material-icons-outlined">timer</span></div></div><h3>14</h3><p>Off Duty</p></div>
+        <div class="stat-card"><div class="stat-card-head"><div class="stat-icon blue"><span class="material-icons-outlined">star</span></div></div><h3>4.8</h3><p>Avg. Rating</p></div>
+      </div>
+      <div class="card">
+        <div class="card-body">
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Rider</th><th>Phone</th><th>Status</th><th>Trips Today</th><th>Rating</th><th>Earnings Today</th><th>Action</th></tr></thead>
+              <tbody>
+                <tr><td><div style="display:flex;align-items:center;gap:8px;"><div class="user-avatar">EO</div><div><p style="font-weight:600;font-size:13px;">Emeka Okafor</p><span style="font-size:11px;color:var(--muted);">Lagos Island</span></div></div></td><td>+234 802 345 6789</td><td><span class="pill delivered">Online</span></td><td>6</td><td>⭐ 4.9</td><td>₦14,250</td><td><button class="btn btn-ghost" style="padding:5px 12px;font-size:12px;">View</button></td></tr>
+                <tr><td><div style="display:flex;align-items:center;gap:8px;"><div class="user-avatar" style="background:#eff6ff;color:#1d4ed8;">KA</div><div><p style="font-weight:600;font-size:13px;">Kunle Adeyemi</p><span style="font-size:11px;color:var(--muted);">Surulere</span></div></div></td><td>+234 803 456 7890</td><td><span class="pill delivered">Online</span></td><td>5</td><td>⭐ 4.8</td><td>₦11,800</td><td><button class="btn btn-ghost" style="padding:5px 12px;font-size:12px;">View</button></td></tr>
+                <tr><td><div style="display:flex;align-items:center;gap:8px;"><div class="user-avatar" style="background:#fffbeb;color:#92400e;">TO</div><div><p style="font-weight:600;font-size:13px;">Tunde Ogbile</p><span style="font-size:11px;color:var(--muted);">Ikeja</span></div></div></td><td>+234 804 567 8901</td><td><span class="pill pending">Off Duty</span></td><td>0</td><td>⭐ 4.6</td><td>₦0</td><td><button class="btn btn-ghost" style="padding:5px 12px;font-size:12px;">View</button></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== FINANCIALS ===== -->
+    <div class="page-section" id="page-financials">
+      <div class="page-header">
+        <div>
+          <div class="breadcrumb" style="margin-bottom:6px;"><a href="#" onclick="showPage('dashboard')">Dashboard</a><span class="sep">›</span><span class="cur">Financials</span></div>
+          <h2>Financials</h2>
+          <p>Revenue, expenses and profit overview</p>
+        </div>
+        <button class="btn btn-ghost"><span class="material-icons-outlined" style="font-size:16px;">file_download</span> Export Report</button>
+      </div>
+      <div class="kpi-strip">
+        <div class="kpi-card"><p>Total Revenue</p><h4 class="green">₦7.65M</h4></div>
+        <div class="kpi-card"><p>Total Expenses</p><h4>₦1.18M</h4></div>
+        <div class="kpi-card"><p>Net Profit</p><h4 class="green">₦5.67M</h4></div>
+        <div class="kpi-card"><p>Margin</p><h4>74.1%</h4></div>
+      </div>
+      <div class="card">
+        <div class="card-header"><h4>Revenue vs Expenses</h4></div>
+        <div class="card-body no-pt"><div style="height:260px;"><canvas id="financialsBarChart2"></canvas></div></div>
+      </div>
+    </div>
+
+    <!-- ===== TRANSACTIONS ===== -->
+    <div class="page-section" id="page-transactions">
+      <div class="page-header">
+        <div>
+          <div class="breadcrumb" style="margin-bottom:6px;"><a href="#" onclick="showPage('dashboard')">Dashboard</a><span class="sep">›</span><span class="cur">Transactions</span></div>
+          <h2>Transactions</h2><p>All wallet and payment activity</p>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-body">
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Ref</th><th>User</th><th>Type</th><th>Amount</th><th>Date</th><th>Status</th></tr></thead>
+              <tbody>
+                <tr><td><strong>TXN-8801</strong></td><td>Amara Johnson</td><td>Wallet Top-up</td><td style="color:var(--green-d);font-weight:700;">+₦5,000</td><td>Jun 10, 2026</td><td><span class="pill delivered">Success</span></td></tr>
+                <tr><td><strong>TXN-8800</strong></td><td>Food Palace</td><td>Order Payment</td><td style="font-weight:700;">₦4,500</td><td>Jun 10, 2026</td><td><span class="pill delivered">Success</span></td></tr>
+                <tr><td><strong>TXN-8799</strong></td><td>Emeka Okafor</td><td>Rider Payout</td><td style="color:var(--rose);font-weight:700;">-₦2,800</td><td>Jun 10, 2026</td><td><span class="pill delivered">Success</span></td></tr>
+                <tr><td><strong>TXN-8798</strong></td><td>Seun Falana</td><td>Refund</td><td style="color:var(--rose);font-weight:700;">-₦3,200</td><td>Jun 9, 2026</td><td><span class="pill pending">Processing</span></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== WALLETS ===== -->
+    <div class="page-section" id="page-wallets">
+      <div class="page-header">
+        <div>
+          <div class="breadcrumb" style="margin-bottom:6px;"><a href="#" onclick="showPage('dashboard')">Dashboard</a><span class="sep">›</span><span class="cur">Wallets</span></div>
+          <h2>Wallets</h2><p>User wallet balances and top-ups</p>
+        </div>
+      </div>
+      <div class="kpi-strip">
+        <div class="kpi-card"><p>Total Wallet Balance</p><h4>₦18.3M</h4></div>
+        <div class="kpi-card"><p>Top-ups Today</p><h4 class="green">₦1.24M</h4></div>
+        <div class="kpi-card"><p>Withdrawals Today</p><h4>₦890k</h4></div>
+        <div class="kpi-card"><p>Active Wallets</p><h4>2,340</h4></div>
+      </div>
+      <div class="card">
+        <div class="card-body">
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>User</th><th>Type</th><th>Balance</th><th>Last Activity</th><th>Action</th></tr></thead>
+              <tbody>
+                <tr><td>Amara Johnson</td><td>Customer</td><td style="font-weight:700;">₦12,400</td><td>5 mins ago</td><td><button class="btn btn-ghost" style="padding:5px 12px;font-size:12px;">View</button></td></tr>
+                <tr><td>Food Palace</td><td>Merchant</td><td style="font-weight:700;">₦340,200</td><td>12 mins ago</td><td><button class="btn btn-ghost" style="padding:5px 12px;font-size:12px;">View</button></td></tr>
+                <tr><td>Emeka Okafor</td><td>Rider</td><td style="font-weight:700;">₦28,750</td><td>1 hr ago</td><td><button class="btn btn-ghost" style="padding:5px 12px;font-size:12px;">View</button></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== REPORTS ===== -->
+    <div class="page-section" id="page-reports">
+      <div class="page-header">
+        <div>
+          <div class="breadcrumb" style="margin-bottom:6px;"><a href="#" onclick="showPage('dashboard')">Dashboard</a><span class="sep">›</span><span class="cur">Reports</span></div>
+          <h2>Reports</h2><p>Generate and download business reports</p>
+        </div>
+        <button class="btn btn-primary"><span class="material-icons-outlined" style="font-size:16px;">add</span> Generate Report</button>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+        <div class="card" style="cursor:pointer;" onmouseenter="this.style.borderColor='var(--green)'" onmouseleave="this.style.borderColor='var(--border)'">
+          <div class="card-body"><div class="stat-icon green" style="margin-bottom:12px;"><span class="material-icons-outlined">shopping_bag</span></div><h4 style="font-weight:700;font-size:15px;margin-bottom:4px;">Order Report</h4><p style="color:var(--muted);font-size:12px;">Detailed breakdown of all orders by status, merchant and rider</p></div>
+        </div>
+        <div class="card" style="cursor:pointer;" onmouseenter="this.style.borderColor='var(--green)'" onmouseleave="this.style.borderColor='var(--border)'">
+          <div class="card-body"><div class="stat-icon blue" style="margin-bottom:12px;"><span class="material-icons-outlined">paid</span></div><h4 style="font-weight:700;font-size:15px;margin-bottom:4px;">Financial Report</h4><p style="color:var(--muted);font-size:12px;">Revenue, expenses, refunds, and profit margins</p></div>
+        </div>
+        <div class="card" style="cursor:pointer;" onmouseenter="this.style.borderColor='var(--green)'" onmouseleave="this.style.borderColor='var(--border)'">
+          <div class="card-body"><div class="stat-icon amber" style="margin-bottom:12px;"><span class="material-icons-outlined">directions_bike</span></div><h4 style="font-weight:700;font-size:15px;margin-bottom:4px;">Rider Performance</h4><p style="color:var(--muted);font-size:12px;">Trip counts, ratings, earnings and on-time rates per rider</p></div>
+        </div>
+        <div class="card" style="cursor:pointer;" onmouseenter="this.style.borderColor='var(--green)'" onmouseleave="this.style.borderColor='var(--border)'">
+          <div class="card-body"><div class="stat-icon rose" style="margin-bottom:12px;"><span class="material-icons-outlined">people</span></div><h4 style="font-weight:700;font-size:15px;margin-bottom:4px;">User Activity</h4><p style="color:var(--muted);font-size:12px;">Customer orders, merchant GMV and retention rates</p></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== SETTINGS ===== -->
+    <div class="page-section" id="page-settings">
+      <div class="page-header">
+        <div>
+          <div class="breadcrumb" style="margin-bottom:6px;"><a href="#" onclick="showPage('dashboard')">Dashboard</a><span class="sep">›</span><span class="cur">Settings</span></div>
+          <h2>Settings</h2><p>Configure platform preferences</p>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-header"><h4>Platform Settings</h4></div>
+        <div class="card-body no-pt" style="display:flex;flex-direction:column;gap:18px;">
+          <div style="display:flex;align-items:center;justify-content:space-between;padding-bottom:14px;border-bottom:1px solid var(--border);">
+            <div><p style="font-weight:600;">Delivery Fee Base Rate</p><span style="font-size:12px;color:var(--muted);">Minimum charge per order</span></div>
+            <div style="display:flex;align-items:center;gap:8px;"><input type="text" value="₦500" style="width:90px;padding:8px 10px;border:1px solid var(--border);border-radius:8px;font-size:13px;text-align:right;"><button class="btn btn-primary" style="padding:7px 14px;">Save</button></div>
+          </div>
+          <div style="display:flex;align-items:center;justify-content:space-between;padding-bottom:14px;border-bottom:1px solid var(--border);">
+            <div><p style="font-weight:600;">Rider Commission Rate</p><span style="font-size:12px;color:var(--muted);">Percentage of delivery fee</span></div>
+            <div style="display:flex;align-items:center;gap:8px;"><input type="text" value="80%" style="width:90px;padding:8px 10px;border:1px solid var(--border);border-radius:8px;font-size:13px;text-align:right;"><button class="btn btn-primary" style="padding:7px 14px;">Save</button></div>
+          </div>
+          <div style="display:flex;align-items:center;justify-content:space-between;">
+            <div><p style="font-weight:600;">Email Notifications</p><span style="font-size:12px;color:var(--muted);">Send order alerts to admin email</span></div>
+            <div style="width:46px;height:26px;background:var(--green);border-radius:100px;position:relative;cursor:pointer;"><div style="width:20px;height:20px;background:white;border-radius:50%;position:absolute;top:3px;right:3px;box-shadow:0 1px 4px rgba(0,0,0,0.2);"></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+     <script src="admin.js"></script>
+</body>
+</html>
