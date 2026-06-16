@@ -10,8 +10,32 @@
 <body>
   <div id="app-shell">
 
+    <!-- LOADING SCREEN -->
+    <div id="screen-loading" class="screen active">
+      <div class="loading-content">
+        <div class="loading-logo">
+          <div class="loading-icon">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+            </svg>
+          </div>
+          <div class="loading-pulse-ring"></div>
+          <div class="loading-pulse-ring delay"></div>
+        </div>
+        <h1 class="loading-brand">Bamiraja</h1>
+        <p class="loading-tagline">Fresh Food, Fast Delivery</p>
+        <div class="loading-bar-wrap">
+          <div class="loading-bar" id="loading-bar"></div>
+        </div>
+        <p class="loading-hint" id="loading-hint">Getting things ready…</p>
+      </div>
+      <div class="loading-footer">
+        <span>🇳🇬 Now serving Lagos</span>
+      </div>
+    </div>
+
     <!-- WELCOME SCREEN -->
-    <div id="screen-welcome" class="screen active">
+    <div id="screen-welcome" class="screen">
       <div class="hero-bg-img"></div>
       <div class="welcome-content">
         <div class="logo-area">
